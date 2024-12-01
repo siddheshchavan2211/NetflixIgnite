@@ -22,24 +22,53 @@ const SignPage = () => {
         <div className="flex flex-col items-center ">
           {/* Enter Name Input */}
           {!signuppage ? null : (
-            <input
-              type="text"
-              placeholder="Enter Name"
-              className="block w-80 h-16 mb-4 p-3 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
-            />
+            <>
+              <div className="relative w-80">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder=" "
+                  className="peer my-4 block w-full h-16 px-3 pt-5 pb-1 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-transparent"
+                />
+                <label
+                  htmlFor="name"
+                  className="absolute left-4   top-1/2 transform -translate-y-1/2 text-gray-400 text-lg transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
+                >
+                  Enter Full Name
+                </label>
+              </div>
+            </>
           )}
           {/* Enter Email Input */}
-          <input
-            type="email"
-            placeholder="Enter Email"
-            className="block w-80 h-16 mb-4 p-3 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
+          <div className="relative w-80">
+            <input
+              type="email"
+              id="email"
+              placeholder=" "
+              className="peer block my-4 w-full h-16 px-3 pt-5 pb-1 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-transparent"
+            />
+            <label
+              htmlFor="email"
+              className="absolute left-4   top-1/2 transform -translate-y-1/2 text-gray-400 text-lg transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
+            >
+              Enter Email
+            </label>
+          </div>
           {/* Enter Password Input */}
-          <input
-            type="password"
-            placeholder="Enter Password"
-            className="block w-80 h-16 mb-4 p-3 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
+          <div className="relative w-80 ">
+            <input
+              type="password"
+              id="pass"
+              placeholder=" "
+              className="peer block my-4 w-full h-16 px-3 pt-5 pb-1 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-transparent"
+            />
+            <label
+              htmlFor="pass"
+              className="absolute left-4   top-1/2 transform -translate-y-1/2 text-gray-400 text-lg transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
+            >
+              Enter Password
+            </label>
+          </div>
           {/* Submit Button */}
           <button
             type="submit"
@@ -48,7 +77,7 @@ const SignPage = () => {
             Submit
           </button>
         </div>
-        <div className="flex left-0 right-0 justify-start h-24">
+        <div className="flex left-0 right-0 justify-start h-16">
           <p className="text-white mt-8 ml-14  ">
             {!signuppage ? (
               <>

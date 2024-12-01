@@ -8,12 +8,14 @@ const Header = () => {
   return (
     <>
       <div className="p-8 absolute w-full flex justify-between bg-gradient-to-b from-black">
-        <img
-          className="w-36
+        <Link to="/">
+          <img
+            className="w-48 ml-10
         "
-          src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"
-          alt="logo"
-        />
+            src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"
+            alt="logo"
+          />
+        </Link>
         {!sign && Toggle && (
           <Link to="/Signpage">
             <button
