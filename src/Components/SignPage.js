@@ -1,8 +1,32 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "./Header";
+import {
+  CheckValidationemail,
+  CheckValidationpassword,
+  CheckValidationname,
+} from "../Utils/Validation";
 
 const SignPage = () => {
   const [signuppage, setsignuppage] = useState(false);
+  const [emailerror, setemailerror] = useState();
+  const [passerror, setpasserror] = useState();
+  const [nameerror, setnameerror] = useState();
+
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  const Handlevalidation = () => {
+    if (signuppage) {
+      const result3 = CheckValidationname(name.current.value);
+      setnameerror(result3);
+    }
+
+    const result = CheckValidationemail(email.current.value);
+    const result2 = CheckValidationpassword(password.current.value);
+    setpasserror(result2);
+
+    setemailerror(result);
+  };
   return (
     <div className="relative">
       {/* Header */}
@@ -14,7 +38,10 @@ const SignPage = () => {
         alt="netflixbg"
       />
       {/* Form */}
-      <form className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-black bg-opacity-60 p-8 rounded-lg shadow-lg w-1/3">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  bg-black bg-opacity-60 p-8 rounded-lg shadow-lg w-1/3"
+      >
         <h1 className="text-white font-bold text-3xl mb-6 ml-16 ">
           {!signuppage ? "Sign In" : "Sign Up"}
         </h1>
@@ -25,6 +52,7 @@ const SignPage = () => {
             <>
               <div className="relative w-80">
                 <input
+                  ref={name}
                   type="text"
                   id="name"
                   placeholder=" "
@@ -32,31 +60,44 @@ const SignPage = () => {
                 />
                 <label
                   htmlFor="name"
-                  className="absolute left-4   top-1/2 transform -translate-y-1/2 text-gray-400 text-lg transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
+                  className="absolute left-4 top-8 transform -translate-y-1/2 text-gray-400 text-lg transition-all 
+      peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 
+      peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
                 >
                   Enter Full Name
                 </label>
               </div>
             </>
           )}
+          <div className="flex  !justify-start !container ml-32  text-red-600 font-medium ">
+            {nameerror}
+          </div>
           {/* Enter Email Input */}
           <div className="relative w-80">
             <input
+              ref={email}
               type="email"
               id="email"
               placeholder=" "
-              className="peer block my-4 w-full h-16 px-3 pt-5 pb-1 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-transparent"
+              className="peer my-4 block w-full h-16 px-3 pt-5 pb-1 border border-gray-400 rounded bg-black bg-opacity-50 text-white focus:outline-none focus:ring-2 focus:ring-white placeholder-transparent"
             />
             <label
               htmlFor="email"
-              className="absolute left-4   top-1/2 transform -translate-y-1/2 text-gray-400 text-lg transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
+              className="absolute left-4 top-8 transform -translate-y-1/2 text-gray-400 text-lg transition-all 
+              peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 
+              peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
             >
               Enter Email
             </label>
           </div>
+          <div className="flex  !justify-start !container ml-32  text-red-600 font-medium ">
+            {emailerror}
+          </div>
+
           {/* Enter Password Input */}
           <div className="relative w-80 ">
             <input
+              ref={password}
               type="password"
               id="pass"
               placeholder=" "
@@ -64,14 +105,21 @@ const SignPage = () => {
             />
             <label
               htmlFor="pass"
-              className="absolute left-4   top-1/2 transform -translate-y-1/2 text-gray-400 text-lg transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
+              className="absolute left-4 top-8 transform -translate-y-1/2 text-gray-400 text-lg transition-all 
+              peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 
+              peer-focus:top-8 peer-focus:text-l peer-focus:text-gray-400"
             >
               Enter Password
             </label>
           </div>
+          <div className="flex  !justify-start !container ml-32  text-red-600 font-medium ">
+            {passerror}
+          </div>
+
           {/* Submit Button */}
           <button
             type="submit"
+            onClick={Handlevalidation}
             className="block w-80 h-12 bg-red-600 text-white font-bold rounded hover:bg-red-700 transition-colors duration-300"
           >
             Submit
