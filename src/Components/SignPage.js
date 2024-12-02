@@ -1,31 +1,99 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../Utils/firebase";
+import {
   CheckValidationemail,
   CheckValidationpassword,
   CheckValidationname,
 } from "../Utils/Validation";
+import { useNavigate } from "react-router-dom";
+import { adduser } from "../Utils/DataSlice";
+import { useDispatch } from "react-redux";
 
 const SignPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [signuppage, setsignuppage] = useState(false);
   const [emailerror, setemailerror] = useState();
   const [passerror, setpasserror] = useState();
   const [nameerror, setnameerror] = useState();
-
+  const [defaulterror, setdefaulterror] = useState();
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const Handlevalidation = () => {
+    let result3 = true;
+
     if (signuppage) {
-      const result3 = CheckValidationname(name.current.value);
+      result3 = CheckValidationname(name.current.value);
       setnameerror(result3);
     }
-
     const result = CheckValidationemail(email.current.value);
     const result2 = CheckValidationpassword(password.current.value);
     setpasserror(result2);
-
     setemailerror(result);
+    if (result && result2 && result3) return;
+    if (signuppage) {
+      //signup
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL:
+              "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg", // Set the display name
+          }).then(() => {
+            const { uid, email, displayName, photoURL } = user;
+            dispatch(
+              adduser({
+                uid: uid,
+                email: email,
+                displayName: displayName,
+                photoURL: photoURL,
+              })
+            );
+
+            console.log(user);
+            navigate("/signpage");
+            setsignuppage(false);
+          });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setdefaulterror(errorCode, "-", errorMessage);
+          // ..
+        });
+    } else {
+      //signin
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log(user);
+          navigate("/browse");
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setdefaulterror(errorCode, "-", errorMessage);
+        });
+    }
   };
   return (
     <div className="relative">
@@ -69,9 +137,11 @@ const SignPage = () => {
               </div>
             </>
           )}
-          <div className="flex  !justify-start !container ml-32  text-red-600 font-medium ">
-            {nameerror}
-          </div>
+          {signuppage && (
+            <div className="flex  !justify-start !container ml-32  text-red-600 font-medium ">
+              {nameerror}
+            </div>
+          )}
           {/* Enter Email Input */}
           <div className="relative w-80">
             <input
@@ -114,6 +184,9 @@ const SignPage = () => {
           </div>
           <div className="flex  !justify-start !container ml-32  text-red-600 font-medium ">
             {passerror}
+          </div>
+          <div className="flex  !justify-start !container ml-32  text-red-600 font-medium ">
+            {defaulterror}
           </div>
 
           {/* Submit Button */}
