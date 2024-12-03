@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-
+import { Video_Slider_Img } from "../Utils/Constants";
 const images = [
-  "https://assets.nflxext.com/ffe/siteui/vlv3/8e8ff9d3-17b4-4ce1-b571-06ba4e025cca/web_auto_scroll/IN-en-20241125-TRIFECTA-1bc613d1-6f02-44e9-942d-b871f9343b86_large.jpg",
-  // Repeat or add more images as needed
+  Video_Slider_Img, // Repeat or add more images as needed
 ];
 
 const EntryPage = () => {

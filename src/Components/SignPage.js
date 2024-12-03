@@ -53,7 +53,7 @@ const SignPage = () => {
             photoURL:
               "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg", // Set the display name
           }).then(() => {
-            const { uid, email, displayName, photoURL } = user;
+            const { uid, email, displayName, photoURL } = auth.currentUser;
             dispatch(
               adduser({
                 uid: uid,
@@ -62,10 +62,7 @@ const SignPage = () => {
                 photoURL: photoURL,
               })
             );
-
-            console.log(user);
-            navigate("/signpage");
-            setsignuppage(false);
+            // setsignuppage(false);
           });
         })
         .catch((error) => {
@@ -82,16 +79,13 @@ const SignPage = () => {
         password.current.value
       )
         .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
-          // ...
+          console.log("User signed in:", userCredential.user);
+          // Do not navigate here; let onAuthStateChanged handle it
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setdefaulterror(errorCode, "-", errorMessage);
+          setdefaulterror(`${errorCode} - ${errorMessage}`);
         });
     }
   };

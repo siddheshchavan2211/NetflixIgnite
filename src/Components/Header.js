@@ -2,14 +2,15 @@ import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Utils/firebase";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { adduser, removeuser } from "../Utils/DataSlice";
 
 const Header = () => {
   const [Toggle, setToggle] = useState(true);
   const location = useLocation();
   const sign = location.pathname === "/Signpage";
   const maintogo = location.pathname === "/browse";
-
+  const dispatch = useDispatch();
   const users = useSelector((store) => store.data);
   const navigate = useNavigate();
 
@@ -20,9 +21,32 @@ const Header = () => {
         alert("signout");
       })
       .catch((error) => {
-        //navigate("/error");
+        navigate("/error");
       });
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          adduser({
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          })
+        );
+        navigate("/browse");
+      } else {
+        dispatch(removeuser());
+        // navigate("/");
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
   return (
     <>
       <div className="p-8 absolute w-full flex justify-between bg-gradient-to-b from-black">

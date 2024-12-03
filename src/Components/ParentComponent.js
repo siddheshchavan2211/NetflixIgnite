@@ -1,18 +1,39 @@
-import React, { useState } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 import EntryPage from "./EntryPage";
 import SignPage from "./SignPage";
 import ErrorPage from "./ErrorPage";
 import Main from "./Main";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../Utils/firebase";
-import { adduser, removeuser } from "../Utils/DataSlice";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { auth } from "../Utils/firebase"; // Import Firebase auth
+import { onAuthStateChanged } from "firebase/auth"; // Import Firebase auth state change listener
+
 const ParentComponent = () => {
-  const dispatch = useDispatch();
-  const [user, setuser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(null); // To track user login status
+
+  useEffect(() => {
+    // Set up the Firebase authentication listener
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuthenticated(true); // User is logged in
+      } else {
+        setIsAuthenticated(false); // User is not logged in
+      }
+    });
+
+    return () => {
+      unsubscribe(); // Clean up the listener when the component unmounts
+    };
+  }, []); // Empty dependency array ensures it only runs once on mount
+
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>; // Show loading state while checking authentication
+  }
+
+  // Setup router based on authentication
   const AppLayout = createBrowserRouter([
     {
       path: "/",
@@ -25,36 +46,10 @@ const ParentComponent = () => {
     },
     {
       path: "/browse",
-      element: user ? <Main /> : <Navigate to="/Signpage" />,
+      element: isAuthenticated ? <Main /> : <Navigate to="/Signpage" replace />, // Navigate to SignPage if not authenticated
     },
   ]);
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const uid = user.uid;
-        const email = user.email;
-        const displayName = user.displayName;
-        const photoURL = user.photoURL;
-        dispatch(
-          adduser({
-            uid: uid,
-            email: email,
-            displayName: displayName,
-            photoURL: photoURL,
-          })
-        );
-        setuser(user);
-        // ...
-      } else {
-        // User is signed out
-        // dispatch(removeuser());
-        // navigate("/");
-        // ...
-      }
-    });
-  }, []);
+
   return (
     <div>
       <RouterProvider router={AppLayout} />
