@@ -14,6 +14,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { adduser } from "../Utils/DataSlice";
 import { useDispatch } from "react-redux";
+import { User_Logo } from "../Utils/Constants";
 
 const SignPage = () => {
   const navigate = useNavigate();
@@ -50,8 +51,7 @@ const SignPage = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg", // Set the display name
+            photoURL: User_Logo,
           }).then(() => {
             const { uid, email, displayName, photoURL } = auth.currentUser;
             dispatch(

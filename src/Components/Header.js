@@ -4,7 +4,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../Utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { adduser, removeuser } from "../Utils/DataSlice";
-
+import { Netflix_Logo } from "../Utils/Constants";
 const Header = () => {
   const [Toggle, setToggle] = useState(true);
   const location = useLocation();
@@ -54,7 +54,7 @@ const Header = () => {
           <img
             className="w-48 ml-10
         "
-            src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Logonetflix.png"
+            src={Netflix_Logo}
             alt="logo"
           />
         </Link>

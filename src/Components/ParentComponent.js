@@ -8,32 +8,30 @@ import EntryPage from "./EntryPage";
 import SignPage from "./SignPage";
 import ErrorPage from "./ErrorPage";
 import Main from "./Main";
-import { auth } from "../Utils/firebase"; // Import Firebase auth
-import { onAuthStateChanged } from "firebase/auth"; // Import Firebase auth state change listener
+import { auth } from "../Utils/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const ParentComponent = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null); // To track user login status
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    // Set up the Firebase authentication listener
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setIsAuthenticated(true); // User is logged in
+        setIsAuthenticated(true);
       } else {
-        setIsAuthenticated(false); // User is not logged in
+        setIsAuthenticated(false);
       }
     });
 
     return () => {
-      unsubscribe(); // Clean up the listener when the component unmounts
+      unsubscribe();
     };
-  }, []); // Empty dependency array ensures it only runs once on mount
+  }, []);
 
   if (isAuthenticated === null) {
     return <div>Loading...</div>; // Show loading state while checking authentication
   }
 
-  // Setup router based on authentication
   const AppLayout = createBrowserRouter([
     {
       path: "/",
