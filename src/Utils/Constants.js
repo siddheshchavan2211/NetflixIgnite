@@ -6,3 +6,12 @@ export const Video_Slider_Img =
 
 export const User_Logo =
   "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"; // Set the display name
+
+export const TMDB_AUTHORIZATION = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YjcyYzc0NzU5NzZlZDBjMDJjM2QwYWIzNDYyNGRhMSIsIm5iZiI6MTczMzQ3MjQ5OS4xMzEsInN1YiI6IjY3NTJiMGYzYjFlYWE1Yzg5MWRhZjE3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6kCOGp5-ZzQjE6sENp3Gdnm7HWh9XcnemT-DrPqR7QU",
+  },
+};
