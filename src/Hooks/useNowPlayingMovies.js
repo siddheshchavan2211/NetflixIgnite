@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { TMDB_AUTHORIZATION } from "../Utils/Constants";
+import { Bgmovierunning } from "../Utils/MoviesSlice";
+import { useDispatch } from "react-redux";
 
 const NowPlayingMovies = (id) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     Getvideobyid();
   }, []);
@@ -11,8 +14,14 @@ const NowPlayingMovies = (id) => {
       TMDB_AUTHORIZATION
     );
     const data = await respnse.json();
-    console.log(data);
+    const FilterMovieTrailer = data.results.filter(
+      (mov) => mov.type === "Trailer"
+    );
+    const MovieTrailer = FilterMovieTrailer.length
+      ? FilterMovieTrailer[0]
+      : data.results[0];
+    dispatch(Bgmovierunning(MovieTrailer));
+    // console.log(MovieTrailer.key);
   };
-  return <div></div>;
 };
 export default NowPlayingMovies;

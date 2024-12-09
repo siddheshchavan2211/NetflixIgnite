@@ -49,7 +49,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="p-8 absolute w-full flex justify-between bg-gradient-to-b from-black">
+      <div className="p-8 absolute w-full flex justify-between bg-gradient-to-b from-black z-20 top-0 left-0">
         <Link to="/">
           <img
             className="w-48 ml-10
@@ -82,16 +82,16 @@ const Header = () => {
 
             <div className="absolute right-0 mt-2 w-40 bg-white  shadow-lg z-10 hidden group-hover:block group-focus-within:block">
               <ul className="flex flex-col">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-black">
                   Profile
                 </li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer  text-black">
                   Settings
                 </li>
 
                 <li
                   onClick={Signoutfun}
-                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                  className="px-4 py-2 hover:bg-gray-100 cursor-pointer  text-black"
                 >
                   Logout
                 </li>

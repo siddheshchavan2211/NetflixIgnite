@@ -1,6 +1,10 @@
 import Header from "./Header";
 import BG_Video_Container from "./BG_Video_Container";
 import { Currentplayingmovies } from "../Hooks/useCurrenMovies";
+import MovieSuggContainer from "./MovieSuggContainer";
+import { Populargmovies } from "../Hooks/usePopularMovies";
+import { Upcomingmovies } from "../Hooks/useUpcomingMovies";
+import { Trendingmovies } from "../Hooks/useTrending";
 /**on browse page there will two containers
  * bg-video container
  * background video
@@ -12,16 +16,15 @@ import { Currentplayingmovies } from "../Hooks/useCurrenMovies";
 
 const Main = () => {
   Currentplayingmovies();
+  Populargmovies();
+  Upcomingmovies();
+  Trendingmovies();
   return (
-    <div className="flex flex-col h-screen">
-      {/* Header */}
+    <div className="bg-gray-900 min-h-screen text-white">
       <Header />
-
-      {/* Main Content */}
-      <div className="flex-grow flex items-center justify-center">
-        <div className="text-center text-lg font-semibold">
-          <BG_Video_Container />
-        </div>
+      <div className="">
+        <BG_Video_Container />
+        <MovieSuggContainer />
       </div>
     </div>
   );

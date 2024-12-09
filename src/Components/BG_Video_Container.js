@@ -10,8 +10,9 @@ const BG_Video_Container = () => {
   //   console.log(Bgmovie);
   return (
     <div>
-      <BG_Video id={id} />
       <BG_Name title={original_title} desc={overview} />
+
+      <BG_Video id={id} />
     </div>
   );
 };
