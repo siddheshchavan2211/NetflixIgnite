@@ -10,10 +10,10 @@ export const Populargmovies = () => {
       try {
         const response = await fetch(
           "https://api.themoviedb.org/3/movie/popular?&page=1",
-          TMDB_AUTHORIZATION
+          TMDB_AUTHORIZATION,
         );
         const data = await response.json();
-        console.log(data.results);
+        // console.log(data.results);
         dispatch(Popularmovies(data.results));
       } catch (error) {
         console.error("Error fetching data:", error);

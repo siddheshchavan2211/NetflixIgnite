@@ -10,10 +10,10 @@ export const Trendingmovies = () => {
       try {
         const response = await fetch(
           "https://api.themoviedb.org/3/trending/movie/day?language=en-IN",
-          TMDB_AUTHORIZATION
+          TMDB_AUTHORIZATION,
         );
         const data = await response.json();
-        console.log(data.results);
+        // console.log(data.results);
         dispatch(Trendingmovie(data.results));
       } catch (error) {
         console.error("Error fetching data:", error);

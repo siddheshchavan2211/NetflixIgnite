@@ -17,3 +17,8 @@ export const TMDB_AUTHORIZATION = {
 };
 
 export const Image_Path = "https://image.tmdb.org/t/p/w500";
+
+export const Open_AI_KEY =
+  "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";
+
+export const Hugging_Access_Token = "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";

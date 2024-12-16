@@ -10,6 +10,9 @@ import ErrorPage from "./ErrorPage";
 import Main from "./Main";
 import { auth } from "../Utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import GptSuggestion from "./GptSuggestion";
+import StreamingPage from "./StreamingPage";
+import Profile from "./Profile";
 
 const ParentComponent = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -45,6 +48,18 @@ const ParentComponent = () => {
     {
       path: "/browse",
       element: isAuthenticated ? <Main /> : <Navigate to="/Signpage" replace />, // Navigate to SignPage if not authenticated
+    },
+    {
+      path: "/Suggestion",
+      element: <GptSuggestion />,
+    },
+    {
+      path: "/browse/stream/:id",
+      element: <StreamingPage />,
+    },
+    {
+      path: "/profile",
+      element: <Profile />,
     },
   ]);
 
