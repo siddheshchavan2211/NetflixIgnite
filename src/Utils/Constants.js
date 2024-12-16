@@ -11,14 +11,12 @@ export const TMDB_AUTHORIZATION = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YjcyYzc0NzU5NzZlZDBjMDJjM2QwYWIzNDYyNGRhMSIsIm5iZiI6MTczMzQ3MjQ5OS4xMzEsInN1YiI6IjY3NTJiMGYzYjFlYWE1Yzg5MWRhZjE3NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.6kCOGp5-ZzQjE6sENp3Gdnm7HWh9XcnemT-DrPqR7QU",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDBKEY,
   },
 };
 
 export const Image_Path = "https://image.tmdb.org/t/p/w500";
 
-export const Open_AI_KEY =
-  "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";
+export const Open_AI_KEY = process.env.REACT_APP_OPENAI;
 
-export const Hugging_Access_Token = "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";
+export const Hugging_Access_Token = process.env.REACT_APP_Hugging_Access_Token;

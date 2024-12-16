@@ -1,11 +1,13 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { language } from "../Utils/LanguageConstants";
-import client from "../Components/openai";
-import { Hugging_Access_Token } from "../Utils/Constants";
+import { Hugging_Access_Token, TMDB_AUTHORIZATION } from "../Utils/Constants";
+import { SearchMovies } from "../Utils/MoviesSlice";
+
 const GptInput = () => {
   const changelang = useSelector((store) => store.gpt.language);
   const searchInput = useRef();
+  const dispatch = useDispatch();
   // const GptResults = async () => {
   //   console.log(searchInput.current.value);
   //   const GptSearch =
@@ -20,7 +22,7 @@ const GptInput = () => {
   //   console.log(json.content);
   // };
   // const GptResults = async () => {
-  //   const apiKey = "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"; // Your Hugging Face API key
+  //   const apiKey = ""; // Your Hugging Face API key
 
   //   const GptSearch =
   //     "act as a movie suggestion bot and give results for this query: " +
@@ -45,7 +47,16 @@ const GptInput = () => {
   //   const result = await response.json();
   //   console.log(result, "hello");
   // };
-
+  const GptResults = async () => {
+    console.log(searchInput.current.value);
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?query=${searchInput.current.value}&include_adult=false&language=en-US&page=1`,
+      TMDB_AUTHORIZATION,
+    );
+    const data = await response.json();
+    // console.log(data);
+    dispatch(SearchMovies(data.results));
+  };
   return (
     <div className="flex justify-center pt-28">
       <form onClick={(e) => e.preventDefault()}>
@@ -56,7 +67,7 @@ const GptInput = () => {
           className="mr-3 w-96 rounded-lg border border-black py-4 pl-5 text-black"
         />
         <button
-          // onClick={GptResults}
+          onClick={GptResults}
           className="rounded-lg bg-red-500 px-6 py-4"
         >
           {" "}

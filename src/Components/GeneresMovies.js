@@ -2,7 +2,7 @@ import React from "react";
 import GeneresCards from "./GeneresCards";
 import { Link } from "react-router-dom";
 const GeneresMovies = ({ nowplaying, title }) => {
-  // console.log(nowplaying);
+  // console.log(nowplaying, "123");
 
   //   const { poster_path } = nowplaying[0];
   //   console.log(poster_path);

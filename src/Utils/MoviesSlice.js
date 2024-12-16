@@ -8,6 +8,7 @@ const moviesslice = createSlice({
     popMovies: null,
     upcoming: null,
     Trending: null,
+    data: null,
   },
   reducers: {
     nowplayingmovies: (state, action) => {
@@ -25,6 +26,9 @@ const moviesslice = createSlice({
     Bgmovierunning: (state, action) => {
       state.storeBGMovie = action.payload;
     },
+    SearchMovies: (state, action) => {
+      state.data = action.payload;
+    },
   },
 });
 export const {
@@ -33,5 +37,6 @@ export const {
   Popularmovies,
   Upcomingmovie,
   Trendingmovie,
+  SearchMovies,
 } = moviesslice.actions;
 export default moviesslice.reducer;
