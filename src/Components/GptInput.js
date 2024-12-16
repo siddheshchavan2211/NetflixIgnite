@@ -58,17 +58,17 @@ const GptInput = () => {
     dispatch(SearchMovies(data.results));
   };
   return (
-    <div className="flex justify-center pt-28">
+    <div className="flex justify-center rounded-md pt-28">
       <form onClick={(e) => e.preventDefault()}>
         <input
           type="text"
           ref={searchInput}
           placeholder={language[changelang].gptplaceholder}
-          className="mr-3 w-96 rounded-lg border border-black py-4 pl-5 text-black"
+          className="mr-3 rounded-lg border border-black py-2 text-black placeholder:text-xs md:w-96 md:py-4 md:pl-5 md:placeholder:text-xl"
         />
         <button
           onClick={GptResults}
-          className="rounded-lg bg-red-500 px-6 py-4"
+          className="rounded-lg bg-red-500 px-3 py-2 md:px-6 md:py-4"
         >
           {" "}
           {language[changelang].search}

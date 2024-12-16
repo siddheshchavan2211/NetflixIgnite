@@ -20,3 +20,4 @@ export const Image_Path = "https://image.tmdb.org/t/p/w500";
 export const Open_AI_KEY = process.env.REACT_APP_OPENAI;
 
 export const Hugging_Access_Token = process.env.REACT_APP_Hugging_Access_Token;
+//hiding secrets key

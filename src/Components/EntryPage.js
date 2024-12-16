@@ -29,11 +29,11 @@ const EntryPage = () => {
 
   return (
     <div className="h-full bg-black bg-gradient-to-r from-dark-start to-dark-end text-white">
-      <div className="h-full min-h-full">
+      <div className="md:h-full md:min-h-full">
         <Header />
-        <div className="mx-12 pt-24">
+        <div className="mx-6 pt-24 md:mx-12">
           {/* Container */}
-          <div className="border-white-700 relative h-[35rem] w-full overflow-hidden rounded-3xl border border-t-2">
+          <div className="border-white-700 relative h-72 w-full overflow-hidden rounded-3xl border border-t-2 md:h-[35rem]">
             {/* Scrolling strip */}
             <div
               className="absolute flex h-full"
@@ -64,10 +64,10 @@ const EntryPage = () => {
             {/* Overlay Text */}
 
             <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50 text-white">
-              <h1 className="text-4xl font-bold">
+              <h1 className="text-sm font-bold md:text-4xl">
                 Unlimited movies, TV shows and more
               </h1>
-              <p className="mt-4 text-lg">
+              <p className="mt-4 text-sm md:text-lg">
                 Starts at ₹149. Cancel at any time.
               </p>
             </div>

@@ -7,7 +7,7 @@ const GeneresCards = ({ poster_path }) => {
   return (
     <div className="flex-shrink-0">
       <img
-        className="object-fit h-60 w-72"
+        className="object-fit h-32 w-32 md:h-60 md:w-72"
         src={Image_Path + poster_path}
         alt="card-img"
       />

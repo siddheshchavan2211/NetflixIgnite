@@ -2,24 +2,24 @@ import React from "react";
 
 const BG_Name = ({ title, desc }) => {
   return (
-    <div className="w-full   aspect-video bg-gradient-to-r from-black bg-opacity-90 top-0 right-0 absolute text-white  pt-72 pl-24 ">
-      <div className="inline group ">
+    <div className="absolute right-0 top-0 aspect-video w-full bg-opacity-90 bg-gradient-to-r from-black pl-6 pt-20 text-white md:pl-24 md:pt-72">
+      <div className="group inline">
         {/* Title */}
-        <h1 className="font-bold text-6xl cursor-pointer inline text-white tracking-wide uppercase bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+        <h1 className="inline cursor-pointer bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-xs font-bold uppercase tracking-wide text-transparent text-white md:text-6xl">
           {title}
         </h1>
 
         {/* Description (Initially hidden) */}
-        <p className="w-1/4 hidden group-hover:block">{desc}</p>
+        <p className="hidden w-1/4 group-hover:block">{desc}</p>
       </div>
 
-      <div className="flex ">
-        <button className="px-6 py-2 bg-white text-black flex font-semibold justify-between rounded-md mt-4 hover:bg-slate-300">
+      <div className="flex">
+        <button className="mt-4 flex justify-between rounded-md bg-white px-2 font-semibold text-black hover:bg-slate-300 md:px-6 md:py-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="black"
-            className="size-6 mr-2"
+            className="mr-2 mt-2 size-4 md:size-6"
           >
             <path
               fillRule="evenodd"
@@ -30,14 +30,14 @@ const BG_Name = ({ title, desc }) => {
           {""}
           Play
         </button>
-        <button className=" ml-6 px-6 py-2 bg-slate-500 bg-opacity-50 text-white flex font-semibold justify-between rounded-md mt-4 hover:bg-slate-400">
+        <button className=",md:py-2 mt-4 hidden justify-between rounded-md bg-slate-500 bg-opacity-50 px-3 py-1 font-semibold text-white hover:bg-slate-400 md:ml-6 md:flex md:px-6">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="size-6 mr-2"
+            className="mr-2 mt-2 size-4 md:size-6"
           >
             <path
               strokeLinecap="round"

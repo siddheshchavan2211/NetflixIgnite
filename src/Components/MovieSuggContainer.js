@@ -20,7 +20,7 @@ const MovieSuggContainer = () => {
     upcoming &&
     Trending && (
       <div className="bg-black">
-        <div className="z-20 -mt-64 relative  ">
+        <div className="relative z-20 md:-mt-64">
           <GeneresMovies
             title={"Now Playing"}
             nowplaying={nowplaying.storeMoviesData}

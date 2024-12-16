@@ -60,7 +60,11 @@ const Header = () => {
     <>
       <div className="absolute left-0 top-0 z-20 flex w-full justify-between bg-gradient-to-b from-black p-8">
         <Link to="/">
-          <img className="ml-10 w-48" src={Netflix_Logo} alt="logo" />
+          <img
+            className="w-20 md:ml-10 md:w-48"
+            src={Netflix_Logo}
+            alt="logo"
+          />
         </Link>
 
         {!sign && Toggle && !maintogo && (
@@ -98,7 +102,7 @@ const Header = () => {
 
             {/* Dropdown Menu */}
 
-            <div className="absolute right-0 z-10 mt-2 hidden w-40 bg-white shadow-lg group-focus-within:block group-hover:block">
+            <div className="absolute right-0 z-10 hidden w-40 bg-white shadow-lg group-focus-within:block group-hover:block">
               <ul className="flex flex-col">
                 <Link to="/profile">
                   {" "}

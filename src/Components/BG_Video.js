@@ -8,9 +8,9 @@ const BG_Video = ({ id }) => {
   if (!ID) return null;
 
   return (
-    <div className=" w-full aspect-video -mt-12  ">
+    <div className="aspect-video h-full w-full md:-mt-12">
       <iframe
-        className="w-full aspect-video"
+        className="aspect-video w-full"
         src={`https://www.youtube.com/embed/${ID.key}?autoplay=1&mute=1`}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

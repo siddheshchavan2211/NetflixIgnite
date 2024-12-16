@@ -8,7 +8,7 @@ const GeneresMovies = ({ nowplaying, title }) => {
   //   console.log(poster_path);
   return (
     <div className="mx-10">
-      <h1 className="my-6 text-3xl text-white">{title}</h1>
+      <h1 className="my-6 text-sm text-white md:text-3xl">{title}</h1>
 
       <div className="flex gap-4 overflow-x-scroll scrollbar-hide">
         {nowplaying.map((path) => (
