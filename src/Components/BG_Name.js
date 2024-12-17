@@ -19,7 +19,7 @@ const BG_Name = ({ title, desc }) => {
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="black"
-            className="mr-2 mt-2 size-4 md:size-6"
+            className="mr-2 mt-2 size-4 md:mt-0 md:size-6"
           >
             <path
               fillRule="evenodd"
@@ -30,14 +30,14 @@ const BG_Name = ({ title, desc }) => {
           {""}
           Play
         </button>
-        <button className=",md:py-2 mt-4 hidden justify-between rounded-md bg-slate-500 bg-opacity-50 px-3 py-1 font-semibold text-white hover:bg-slate-400 md:ml-6 md:flex md:px-6">
+        <button className="mt-4 hidden justify-between rounded-md bg-slate-500 bg-opacity-50 px-3 py-1 font-semibold text-white hover:bg-slate-400 md:ml-6 md:flex md:px-6 md:py-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="mr-2 mt-2 size-4 md:size-6"
+            className="mr-2 mt-2 size-4 md:mt-0 md:size-6"
           >
             <path
               strokeLinecap="round"
