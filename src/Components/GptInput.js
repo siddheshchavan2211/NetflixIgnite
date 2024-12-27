@@ -48,7 +48,7 @@ const GptInput = () => {
   //   console.log(result, "hello");
   // };
   const GptResults = async () => {
-    console.log(searchInput.current.value);
+    // console.log(searchInput.current.value);
     const response = await fetch(
       `https://api.themoviedb.org/3/search/movie?query=${searchInput.current.value}&include_adult=false&language=en-US&page=1`,
       TMDB_AUTHORIZATION,

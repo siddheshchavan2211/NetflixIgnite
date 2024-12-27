@@ -79,7 +79,7 @@ const SignPage = () => {
         password.current.value,
       )
         .then((userCredential) => {
-          console.log("User signed in:", userCredential.user);
+          // console.log("User signed in:", userCredential.user);
           // Do not navigate here; let onAuthStateChanged handle it
         })
         .catch((error) => {

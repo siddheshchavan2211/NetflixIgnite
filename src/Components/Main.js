@@ -7,7 +7,6 @@ import { Upcomingmovies } from "../Hooks/useUpcomingMovies";
 import { Trendingmovies } from "../Hooks/useTrending";
 import GptSuggestion from "./GptSuggestion";
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
 /**on browse page there will two containers
  * bg-video container
  * background video

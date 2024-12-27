@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const SearchMovies = () => {
   const searchdata = useSelector((store) => store.movies.data);
-  console.log(searchdata);
+  // console.log(searchdata);
   if (!searchdata) return null;
   const { original_title } = searchdata[0];
   return (
